@@ -1,21 +1,7 @@
-import AboutView from '@/views/AboutView.vue';
-import ConfigAdminView from '@/views/ConfigAdminView.vue';
-import ConsoleInfoView from '@/views/ConsoleInfoView.vue';
-import DeviceAdminView from '@/views/DeviceAdminView.vue'
-import DtuAdminView from '@/views/DtuAdminView.vue';
 import FirmwareUpgradeView from '@/views/FirmwareUpgradeView.vue';
 import HomeView from '@/views/HomeView.vue';
-import InverterAdminView from '@/views/InverterAdminView.vue';
 import LoginView from '@/views/LoginView.vue';
-import MaintenanceRebootView from '@/views/MaintenanceRebootView.vue';
-import MqttAdminView from '@/views/MqttAdminView.vue';
-import MqttInfoView from '@/views/MqttInfoView.vue';
-import NetworkAdminView from '@/views/NetworkAdminView.vue';
-import NetworkInfoView from '@/views/NetworkInfoView.vue';
-import NtpAdminView from '@/views/NtpAdminView.vue';
-import NtpInfoView from '@/views/NtpInfoView.vue';
-import SecurityAdminView from '@/views/SecurityAdminView.vue';
-import SystemInfoView from '@/views/SystemInfoView.vue';
+
 import { createRouter, createWebHistory } from 'vue-router';
 import { isLoggedIn } from '@/utils/authentication';
 
@@ -36,62 +22,62 @@ const router = createRouter({
     {
         path: '/about',
         name: 'About',
-        component: AboutView
+        component: () => import(/* webpackChunkName: "AboutView" */ '@/views/AboutView.vue')
     },
     {
         path: '/info/network',
         name: 'Network',
-        component: NetworkInfoView
+        component: () => import(/* webpackChunkName: "NetworkInfoView" */ '@/views/NetworkInfoView.vue')
     },
     {
         path: '/info/system',
         name: 'System',
-        component: SystemInfoView
+        component: () => import(/* webpackChunkName: "SystemInfoView" */ '@/views/SystemInfoView.vue')
     },
     {
         path: '/info/ntp',
         name: 'NTP',
-        component: NtpInfoView
+        component: () => import(/* webpackChunkName: "NtpInfoView" */ '@/views/NtpInfoView.vue')
     },
     {
         path: '/info/mqtt',
         name: 'MqTT',
-        component: MqttInfoView
+        component: () => import(/* webpackChunkName: "MqttInfoView" */ '@/views/MqttInfoView.vue')
     },
     {
         path: '/info/console',
         name: 'Web Console',
-        component: ConsoleInfoView
+        component: () => import(/* webpackChunkName: "ConsoleInfoView" */ '@/views/ConsoleInfoView.vue')
     },
     {
         path: '/settings/network',
         name: 'Network Settings',
-        component: NetworkAdminView
+        component: () => import(/* webpackChunkName: "NetworkAdminView" */ '@/views/NetworkAdminView.vue')
     },
     {
         path: '/settings/ntp',
         name: 'NTP Settings',
-        component: NtpAdminView
+        component: () => import(/* webpackChunkName: "NtpAdminView" */ '@/views/NtpAdminView.vue')
     },
     {
         path: '/settings/mqtt',
         name: 'MqTT Settings',
-        component: MqttAdminView
+        component: () => import(/* webpackChunkName: "MqttAdminView" */ '@/views/MqttAdminView.vue')
     },
     {
         path: '/settings/inverter',
         name: 'Inverter Settings',
-        component: InverterAdminView
+        component: () => import(/* webpackChunkName: "InverterAdminView" */ '@/views/InverterAdminView.vue')
     },
     {
         path: '/settings/dtu',
         name: 'DTU Settings',
-        component: DtuAdminView
+        component: () => import(/* webpackChunkName: "DtuAdminView" */ '@/views/DtuAdminView.vue')
     },
     {
         path: '/settings/device',
         name: 'Device Manager',
-        component: DeviceAdminView
+        component: () => import(/* webpackChunkName: "DeviceAdminView" */ '@/views/DeviceAdminView.vue')
     },
     {
         path: '/firmware/upgrade',
@@ -101,30 +87,30 @@ const router = createRouter({
     {
         path: '/settings/config',
         name: 'Config Management',
-        component: ConfigAdminView
+        component: () => import(/* webpackChunkName: "ConfigAdminView" */ '@/views/ConfigAdminView.vue')
     },
     {
         path: '/settings/security',
         name: 'Security',
-        component: SecurityAdminView
+        component: () => import(/* webpackChunkName: "SecurityAdminView" */ '@/views/SecurityAdminView.vue')
     },
     {
         path: '/maintenance/reboot',
         name: 'Device Reboot',
-        component: MaintenanceRebootView
+        component: () => import(/* webpackChunkName: "MaintenanceRebootView" */ '@/views/MaintenanceRebootView.vue')
     }
 ]
 });
 
 router.beforeEach((to, from, next) => {
     if (to.fullPath === '/' || to.fullPath === '/login') {
-        next();
+        next()
     } else {
         if (!isLoggedIn()) {
-            next('/login');
+            next('/login')
         }
     }
-    next();
+    next()
 })
 
 export default router;
