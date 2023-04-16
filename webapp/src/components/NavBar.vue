@@ -22,7 +22,7 @@
                     <li class="nav-item">
                         <router-link @click="onClick" class="nav-link" to="/">{{ $t('menu.LiveView') }}</router-link>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li  v-if="isLogged" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{ $t('menu.Settings') }}
@@ -65,7 +65,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li v-if="isLogged" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
                             {{ $t('menu.Info') }}
@@ -91,7 +91,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    <li v-if="isLogged" class="nav-item">
                         <router-link @click="onClick" class="nav-link" to="/about">{{ $t('menu.About') }}</router-link>
                     </li>
                 </ul>
